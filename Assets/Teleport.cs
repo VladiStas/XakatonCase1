@@ -55,6 +55,33 @@ public class Teleport : MonoBehaviour
                 image.SetActive(false);
             }
         }
+        else if (hit.collider.gameObject == objs[3].gameObject)
+        {
+            image.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                transform.position = objs[3].transform.position;
+                image.SetActive(false);
+            }
+        }
+        else if (hit.collider.gameObject == objs[4].gameObject)
+        {
+            image.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                transform.position = objs[4].transform.position;
+                image.SetActive(false);
+            }
+        }
+        else if (hit.collider.gameObject == objs[5].gameObject)
+        {
+            image.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                transform.position = objs[5].transform.position;
+                image.SetActive(false);
+            }
+        }
         else image.SetActive(false);
        
     }

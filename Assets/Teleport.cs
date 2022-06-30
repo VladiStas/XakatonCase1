@@ -15,11 +15,11 @@ public class Teleport : MonoBehaviour
         TeleportPlayer(objs);
     }
 
-    void ActivePoint(GameObject[] gm)
-    {
-        for (int i = 0; i < gm.Length; i++)
-            gm[i].SetActive(true);
-    }
+    //void ActivePoint(GameObject[] gm)
+    //{
+    //    for (int i = 0; i < gm.Length; i++)
+    //        gm[i].SetActive(true);
+    //}
     void TeleportPlayer(GameObject[] gm, RaycastHit hit, int i, float distance)
     {
 
@@ -41,8 +41,8 @@ public class Teleport : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit);
         Debug.DrawRay(transform.position, ray.direction * distance, Color.yellow);
-        time += Time.deltaTime;
-        Debug.Log($"Time:{time}");
+       /* time += Time.deltaTime;
+        Debug.Log($"Time:{time}");*/
         if (hit.collider != null)
         {
             for (int i = 0; i < objs.Length; i++)
@@ -55,11 +55,11 @@ public class Teleport : MonoBehaviour
                     image.SetActive(true);
                     TeleportPlayer(objs, hit, i, player_distance);
 
-                    if (time> 1f)
+                    /*if (time> 1f)
                     {
                         ActivePoint(gm);
                         time = 0f;
-                    }
+                    }*/
 
                     break;
                 }
@@ -68,7 +68,7 @@ public class Teleport : MonoBehaviour
             }
 
         }
-        else { image.SetActive(false); time = 0; }
+        else { image.SetActive(false); /*time = 0;*/ }
     }
 
 }

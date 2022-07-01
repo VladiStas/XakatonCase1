@@ -5,8 +5,9 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     public GameObject[] objs;
-    public float time=0f;
+    public float time = 0f;
     public GameObject image;
+    public GameObject[] colliders;
     public float distance;
     float player_distance;
     RaycastHit hit;
@@ -23,17 +24,17 @@ public class Teleport : MonoBehaviour
     void TeleportPlayer(GameObject[] gm, RaycastHit hit, int i, float distance)
     {
 
-      
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             transform.position = gm[i].transform.position;
             gm[i].active = false;
-            
+            colliders[i].SetActive(true);
             image.SetActive(false);
         }
-        
-            
-      
+
+
+
     }
 
     void TeleportPlayer(GameObject[] gm)
@@ -41,8 +42,8 @@ public class Teleport : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit);
         Debug.DrawRay(transform.position, ray.direction * distance, Color.yellow);
-       /* time += Time.deltaTime;
-        Debug.Log($"Time:{time}");*/
+        /* time += Time.deltaTime;
+         Debug.Log($"Time:{time}");*/
         if (hit.collider != null)
         {
             for (int i = 0; i < objs.Length; i++)

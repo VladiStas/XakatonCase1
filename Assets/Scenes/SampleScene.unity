@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -235,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &39303264
 Transform:
   m_ObjectHideFlags: 0
@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1302248267}
+  collider: {fileID: 39303263}
 --- !u!65 &39303266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -893,7 +894,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &574240430
 Transform:
   m_ObjectHideFlags: 0
@@ -921,6 +922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 2011554800}
+  collider: {fileID: 574240429}
 --- !u!65 &574240432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1222,7 +1224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &806099715
 Transform:
   m_ObjectHideFlags: 0
@@ -1250,6 +1252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1630556241}
+  collider: {fileID: 806099714}
 --- !u!65 &806099717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1988,7 +1991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1424149518
 Transform:
   m_ObjectHideFlags: 0
@@ -2016,6 +2019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1089050806}
+  collider: {fileID: 1424149517}
 --- !u!65 &1424149520
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2749,7 +2753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1864158706
 Transform:
   m_ObjectHideFlags: 0
@@ -2777,6 +2781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 89899815}
+  collider: {fileID: 1864158705}
 --- !u!65 &1864158708
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2831,7 +2836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1925322143
 Transform:
   m_ObjectHideFlags: 0
@@ -2859,6 +2864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1311582854}
+  collider: {fileID: 1925322142}
 --- !u!65 &1925322145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2971,6 +2977,13 @@ MonoBehaviour:
   - {fileID: 1630556241}
   time: 0
   image: {fileID: 825093870}
+  colliders:
+  - {fileID: 1925322142}
+  - {fileID: 574240429}
+  - {fileID: 1424149517}
+  - {fileID: 39303263}
+  - {fileID: 1864158705}
+  - {fileID: 806099714}
   distance: 300
 --- !u!1 &1982390493
 GameObject:

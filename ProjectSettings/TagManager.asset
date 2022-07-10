@@ -8,6 +8,7 @@ TagManager:
   - UnderLegs
   - Hand
   - Sword
+  - Car
   layers:
   - Default
   - TransparentFX

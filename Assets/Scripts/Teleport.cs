@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Teleport : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class Teleport : MonoBehaviour
     public GameObject[] colliders;
     public float distance;
     float player_distance;
+
     RaycastHit hit;
     private void Update()
     {
         TeleportPlayer(objs);
+        
     }
 
     //void ActivePoint(GameObject[] gm)

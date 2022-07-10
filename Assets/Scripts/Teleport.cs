@@ -44,7 +44,6 @@ public class Teleport : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit);
-        Debug.DrawRay(transform.position, ray.direction * distance, Color.yellow);
         /* time += Time.deltaTime;
          Debug.Log($"Time:{time}");*/
         if (hit.collider != null)

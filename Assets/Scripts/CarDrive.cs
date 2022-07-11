@@ -11,15 +11,19 @@ public class CarDrive : MonoBehaviour
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.SetDestination(Vector3.zero);
+        //agent.SetDestination(Vector3.zero);
     }
 
     void TargetUpdate()
     {
         i++;
+        Debug.Log(i);
         if (i == targets.Count)
+        {
             i = 0;
-        //i = Random.Range(0, targets.Count);
+            Debug.Log("Dowel");
+        }
+                //i = Random.Range(0, targets.Count);
     }
 
     void DriveWheels(GameObject[] gm)

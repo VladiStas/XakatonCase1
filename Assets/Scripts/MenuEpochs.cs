@@ -11,6 +11,7 @@ public class MenuEpochs : Oprimization
     private bool Menu;
     public GameObject[] epochs;
     public GameObject effect;
+    public GameObject[] epochsYears;
     public Oprimization optimiz = new Oprimization();
     public Camera cum;
     public int[] numbers;
@@ -19,7 +20,7 @@ public class MenuEpochs : Oprimization
     public FirstPersonLook look;
     private void Start()
     {
-        
+        look.sensitivity = 2f;
         effect.SetActive(false);
         
     }
@@ -124,54 +125,123 @@ public class MenuEpochs : Oprimization
             effect.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), "Выберите эпоху:");
-            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 100, 100, 40), "2022"))
+            GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 600) / 2, 300, 600), "Выберите эпоху:");
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + -50, 100, 40), "2022"))
             {
                
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 ChangeEpoch(2,true);
+                for (int i = 1; i < epochsYears.Length; i++)
+                    epochsYears[i].SetActive(false);
+                epochsYears[0].SetActive(true);
                 OnOff = false;
                 Opt(game, true);
                 Opt(game);
                 timer = 1;
-              
-               // effect.SetActive(false);
+                look.sensitivity = 2f;
             }
-            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 150, 100, 40), "2002"))
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 0 , 100, 40), "2002"))
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                for (int i = 1; i < epochsYears.Length; i++)
+                    epochsYears[i].SetActive(false);
+                epochsYears[0].SetActive(true);
                 Opt(game, true);
                 Opt(game);
                 ChangeEpoch(2,false);   
                 OnOff = false;
                 timer = 1;
-                //effect.SetActive(false);
+                look.sensitivity = 2f;
             }
-            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 200, 100, 40), "1982")) 
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 50, 100, 40), "1982")) 
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 ChangeEpoch(2, false);
+                for (int i = 1; i < epochsYears.Length; i++)
+                    epochsYears[i].SetActive(false);
+                epochsYears[0].SetActive(true);
                 Opt(game, true);
                 Opt(game, numbers, 3, 5, 7);
                 OnOff = false;
                 timer = 1;
-                //effect.SetActive(false);
+                look.sensitivity = 2f;
             }
-            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 250, 100, 40), "1962"))
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 100, 100, 40), "1962"))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                ChangeEpoch(2, false);
+                for (int i = 1; i < epochsYears.Length; i++)
+                    epochsYears[i].SetActive(false);
+                epochsYears[0].SetActive(true);
+                Opt(game, true);
+                Opt(game, numbers, 3,4, 5, 7);
+                OnOff = false;
+                timer = 1;
+                look.sensitivity = 2f;
+            }
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 150, 100, 40), "1942"))
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 ChangeEpoch(2, false);
                 Opt(game, true);
-                Opt(game, numbers, 3,4, 5, 7);
+                Opt(game, numbers, 3, 4, 5, 7);
+                for (int i = 1; i < epochsYears.Length; i++)
+                    epochsYears[i].SetActive(false);
+                epochsYears[0].SetActive(true);
+                epochsYears[1].SetActive(true);
                 OnOff = false;
                 timer = 1;
-                //effect.SetActive(false);
+                look.sensitivity = 2f;
             }
-            
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 200, 100, 40), "1922"))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                ChangeEpoch(2, false);
+                Opt(game, true);
+                Opt(game, numbers, 3, 4, 5, 7);
+                for (int i = 1; i < epochsYears.Length; i++)
+                    epochsYears[i].SetActive(false);
+                epochsYears[0].SetActive(false);
+                OnOff = false;
+                timer = 1;
+                look.sensitivity = 2f;
+            }
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 250, 100, 40), "1902"))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                ChangeEpoch(2, false);
+                Opt(game, true);
+                Opt(game, numbers, 3, 4, 5, 7);
+                for (int i = 0; i < epochsYears.Length; i++)
+                    epochsYears[i].SetActive(false);
+                epochsYears[0].SetActive(false);
+                OnOff = false;
+                timer = 1;
+                look.sensitivity = 2f;
+            }
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 300, 100, 40), "1882"))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                ChangeEpoch(2, false);
+                Opt(game, true);
+                Opt(game, numbers, 3, 4, 5, 7);
+                for (int i = 1; i < epochsYears.Length; i++)
+                    epochsYears[i].SetActive(false);
+                epochsYears[0].SetActive(false);
+                epochsYears[2].SetActive(true);
+                OnOff = false;
+                timer = 1;
+                look.sensitivity = 2f;
+            }
+
         }
 
         if(Menu == true)
@@ -186,6 +256,7 @@ public class MenuEpochs : Oprimization
                 Cursor.visible = false;
                 Time.timeScale = 1;
                 Menu = false;
+                look.sensitivity = 2f;
             }
             if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 200, 100, 40), "Настройки"))
             {

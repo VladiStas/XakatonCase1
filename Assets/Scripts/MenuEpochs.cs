@@ -23,14 +23,17 @@ public class MenuEpochs : Oprimization
     public float time=0;
     public FirstPersonLook look;
 
+    public GameObject[] settings;
+    public Material[] skyboxes;
     // Переменные для настроек
-    private bool toggleClouds; // Облака
-    private bool toggleStars; // Звезды
-    private bool toggleSounds; // Звезды
+    private bool toggleClouds = true; // Облака
+    private bool toggleStars = true; // Звезды
+    private bool toggleSounds = true; // Звезды
     public float sliderZoom = 0.0f; // Дальность видимости
 
     private void Start()
     {
+        Time.timeScale = 1f;
         look.sensitivity = 2f;
         effect.SetActive(false);
         
@@ -163,7 +166,7 @@ public class MenuEpochs : Oprimization
 
     private void OnGUI()
     {
-        if(OnOff == true)
+        if(OnOff)
         {
             effect.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -230,7 +233,7 @@ public class MenuEpochs : Oprimization
 
         }
 
-        if(Menu == true)
+        if(Menu)
         {
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
@@ -264,15 +267,39 @@ public class MenuEpochs : Oprimization
             Cursor.visible = true;
             GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), "Настройки");
 
-            toggleClouds = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 100, 100, 30), toggleClouds, "Облака"); // toggle облаков
+            toggleClouds = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 100, 100, 30), toggleClouds, "Облака");// toggle облаков
+            CheckBoxSettings(toggleClouds, 0, true);
+
             toggleStars = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 130, 100, 30), toggleStars, "Звезды"); // toggle звезд
             toggleSounds = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 160, 100, 30), toggleSounds, "Звуки"); // toggle звуков
+            CheckBoxSettings(toggleStars, 1, true);
+            CheckBoxSettings(toggleSounds, 2, true);
             GUI.Label(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 185, 100, 30), "Прорисовка");
-            sliderZoom = GUI.HorizontalSlider(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 190, 100, 30), sliderZoom, 0.0f, 10.0f); // slider прорисовки
+            sliderZoom = GUI.HorizontalSlider(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 190, 100, 30), sliderZoom, 1f, 5f); // slider прорисовки
+            SliderZoom();
             GUI.Label(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 218, 100, 30), "Время суток");
-            GUI.Button(new Rect((Screen.width - 105) / 2, (Screen.height - 400) / 2 + 215, 50, 30), "День");
-            GUI.Button(new Rect((Screen.width + 4) / 2, (Screen.height - 400) / 2 + 215, 50, 30), "Ночь");
-            GUI.Button(new Rect((Screen.width + 110) / 2, (Screen.height - 400) / 2 + 215, 90, 30), "Поочередно");
+            if(GUI.Button(new Rect((Screen.width - 105) / 2, (Screen.height - 400) / 2 + 215, 50, 30), "День"))
+            {
+                SettingsGame(3, true);
+                SettingsGame(4, false);
+                SettingsGame(5, false);
+                RenderSettings.skybox = skyboxes[0];
+            }
+            if(GUI.Button(new Rect((Screen.width + 4) / 2, (Screen.height - 400) / 2 + 215, 50, 30), "Ночь"))
+            {
+                SettingsGame(3, false);
+                SettingsGame(4, false);
+                SettingsGame(5, true);
+                RenderSettings.skybox = skyboxes[1];
+            }
+            if(GUI.Button(new Rect((Screen.width + 110) / 2, (Screen.height - 400) / 2 + 215, 90, 30), "Поочередно"))
+            {
+
+                SettingsGame(3, true);
+                SettingsGame(4, true);
+                SettingsGame(5, true);
+                RenderSettings.skybox = skyboxes[2];
+            }
 
             if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 300, 100, 40), "Назад")) // При нажатии на кнопку Назад
             {
@@ -281,6 +308,32 @@ public class MenuEpochs : Oprimization
             }
         }
     }
+    void CheckBoxSettings(bool chkbox, int index, bool active)
+    {
+        if (chkbox)
+        {
+            SettingsGame(index, active);
+        }
+        else SettingsGame(index, !active);
+    }
+    void SettingsGame(int index, bool active)
+    {
+        
+        settings[index].SetActive(active);
+    }
+    
 
-
+    void SliderZoom()
+    {
+        if (sliderZoom == 1)
+            cum.farClipPlane = 1000;
+        if(sliderZoom >1 && sliderZoom <=2)
+            cum.farClipPlane = 2000;
+        if (sliderZoom > 2 && sliderZoom <= 3)
+            cum.farClipPlane = 3000;
+        if (sliderZoom > 3 && sliderZoom <= 4)
+            cum.farClipPlane = 4000;
+        if (sliderZoom > 4 && sliderZoom <= 5)
+            cum.farClipPlane = 5000;
+    }
 }

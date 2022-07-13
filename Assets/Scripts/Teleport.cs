@@ -13,6 +13,11 @@ public class Teleport : MonoBehaviour
     float player_distance;
 
     RaycastHit hit;
+    private void Start()
+    {
+       
+        
+    }
     private void Update()
     {
         TeleportPlayer(objs);

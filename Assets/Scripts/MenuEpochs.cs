@@ -8,12 +8,13 @@ using UnityEngine.SceneManagement;
 public class MenuEpochs : Oprimization
 {
     private bool OnOff;
-    private bool Menu;
+    public bool Menu;
     public GameObject[] epochs;
     public GameObject effect;
     public GameObject star;
     public GameObject[] epochsYears;
     public GameObject[] monuments;
+    public GameObject[] DontDestroy;
     public Oprimization optimiz = new Oprimization();
     public Camera cum;
     public int[] numbers;
@@ -233,6 +234,8 @@ public class MenuEpochs : Oprimization
             if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 150, 100, 40), "Выйти"))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                for (int i = 0; i < DontDestroy.Length; i++)
+                    Destroy(DontDestroy[i]);
             }
         }
     }

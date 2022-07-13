@@ -9,6 +9,7 @@ public class MenuEpochs : Oprimization
 {
     private bool OnOff;
     public bool Menu;
+    public bool MenuSettings;
     public GameObject[] epochs;
     public GameObject effect;
     public GameObject star;
@@ -21,6 +22,13 @@ public class MenuEpochs : Oprimization
     public float timer=0;
     public float time=0;
     public FirstPersonLook look;
+
+    // Переменные для настроек
+    private bool toggleClouds; // Облака
+    private bool toggleStars; // Звезды
+    private bool toggleSounds; // Звезды
+    public float sliderZoom = 0.0f; // Дальность видимости
+
     private void Start()
     {
         look.sensitivity = 2f;
@@ -69,17 +77,19 @@ public class MenuEpochs : Oprimization
 
     void Update()
     {
+        // Debug.Log(toggleClouds); // проверка на true false toggle
+
         if (Input.GetKeyDown(KeyCode.X))
             star.SetActive(false);
         if (Input.GetKeyDown(KeyCode.C))
             star.SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.Z) && !Menu && !OnOff)
+        if (Input.GetKeyDown(KeyCode.Z) && !Menu && !OnOff && !MenuSettings)
         {
             OnOff = true;
             look.sensitivity = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.Z) && OnOff && !Menu)
+        else if (Input.GetKeyDown(KeyCode.Z) && OnOff && !Menu && !MenuSettings)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -88,12 +98,12 @@ public class MenuEpochs : Oprimization
             OnOff = false;
             effect.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && !OnOff && !Menu)
+        if (Input.GetKeyDown(KeyCode.Escape) && !OnOff && !Menu && !MenuSettings)
         {
             Menu = true;
             look.sensitivity = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && Menu && !OnOff)
+        else if (Input.GetKeyDown(KeyCode.Escape) && Menu && !OnOff && !MenuSettings)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -101,6 +111,13 @@ public class MenuEpochs : Oprimization
             look.sensitivity = 2f;
             Menu = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !OnOff && !Menu && MenuSettings)
+        {
+            MenuSettings = false;
+            Menu = true;
+        }
+
 
         if (timer == 1)
         { 
@@ -227,9 +244,10 @@ public class MenuEpochs : Oprimization
                 Menu = false;
                 look.sensitivity = 2f;
             }
-            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 200, 100, 40), "Настройки"))
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 200, 100, 40), "Настройки")) // При нажатии на кнопку Настройки
             {
-
+                Menu = false; // Выключается меню
+                MenuSettings = true; // Включается окно настроек
             }
             if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 150, 100, 40), "Выйти"))
             {
@@ -238,5 +256,31 @@ public class MenuEpochs : Oprimization
                     Destroy(DontDestroy[i]);
             }
         }
+
+        if(MenuSettings)
+        {
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), "Настройки");
+
+            toggleClouds = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 100, 100, 30), toggleClouds, "Облака"); // toggle облаков
+            toggleStars = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 130, 100, 30), toggleStars, "Звезды"); // toggle звезд
+            toggleSounds = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 160, 100, 30), toggleSounds, "Звуки"); // toggle звуков
+            GUI.Label(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 185, 100, 30), "Прорисовка");
+            sliderZoom = GUI.HorizontalSlider(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 190, 100, 30), sliderZoom, 0.0f, 10.0f); // slider прорисовки
+            GUI.Label(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 218, 100, 30), "Время суток");
+            GUI.Button(new Rect((Screen.width - 105) / 2, (Screen.height - 400) / 2 + 215, 50, 30), "День");
+            GUI.Button(new Rect((Screen.width + 4) / 2, (Screen.height - 400) / 2 + 215, 50, 30), "Ночь");
+            GUI.Button(new Rect((Screen.width + 110) / 2, (Screen.height - 400) / 2 + 215, 90, 30), "Поочередно");
+
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 300, 100, 40), "Назад")) // При нажатии на кнопку Назад
+            {
+                Menu = true; // Включается меню
+                MenuSettings = false; // Выключается окно настроек
+            }
+        }
     }
+
+
 }

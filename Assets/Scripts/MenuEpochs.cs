@@ -11,6 +11,7 @@ public class MenuEpochs : Oprimization
     private bool Menu;
     public GameObject[] epochs;
     public GameObject effect;
+    public GameObject star;
     public GameObject[] epochsYears;
     public GameObject[] monuments;
     public Oprimization optimiz = new Oprimization();
@@ -67,6 +68,11 @@ public class MenuEpochs : Oprimization
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+            star.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.C))
+            star.SetActive(true);
+
         if (Input.GetKeyDown(KeyCode.Z) && !Menu && !OnOff)
         {
             OnOff = true;
@@ -181,16 +187,18 @@ public class MenuEpochs : Oprimization
             if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 200, 100, 40), "1922"))
             {
                
-                Epochs(false,0,false,false,"1922");
-                Opt(game, numbers, 3, 4, 5, 7);
-                
+                Epochs(false,0,true,false,"1922");
+                Opt(game, numbers, 2, 3, 5, 7);
+
             }
             if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 250, 100, 40), "1902"))
             {
                 
                 Epochs(false,0,false,false,"1902");
                 Opt(game, numbers, 3, 4, 5, 7);
-               
+
+                epochsYears[2].SetActive(true);
+                epochsYears[3].SetActive(true);
             }
             if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 300, 100, 40), "1882"))
             {

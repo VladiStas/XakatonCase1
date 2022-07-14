@@ -32,6 +32,7 @@ public class MenuEpochs : Oprimization
     public float sliderZoom = 0.0f; // Дальность видимости
 
     public DayCycleManager dayNight;
+    public GameObject[] sounds;
 
     private void Start()
     {
@@ -275,7 +276,7 @@ public class MenuEpochs : Oprimization
             toggleStars = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 130, 100, 30), toggleStars, "Звезды"); // toggle звезд
             toggleSounds = GUI.Toggle(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 160, 100, 30), toggleSounds, "Звуки"); // toggle звуков
             CheckBoxSettings(toggleStars, 1, true);
-            CheckBoxSettings(toggleSounds, 2, true);
+            CheckBoxSettings(toggleSounds,sounds, true);
             GUI.Label(new Rect((Screen.width - 280) / 2, (Screen.height - 400) / 2 + 185, 100, 30), "Прорисовка");
             sliderZoom = GUI.HorizontalSlider(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 190, 100, 30), sliderZoom, 1f, 5f); // slider прорисовки
             SliderZoom();
@@ -315,6 +316,18 @@ public class MenuEpochs : Oprimization
     {
 
         settings[index].SetActive(active);
+    }
+    void SettingGame(GameObject[] gm,int i, bool active)
+    {
+        gm[i].SetActive(active);
+    }
+    void CheckBoxSettings(bool toggle,GameObject[] gm, bool active)
+    {
+        if (toggle)
+            for (int i = 0; i < gm.Length; i++)
+                SettingGame(sounds, i, true);
+        else { for (int i = 0; i < gm.Length; i++) SettingGame(sounds, i, false); }
+            
     }
 
 

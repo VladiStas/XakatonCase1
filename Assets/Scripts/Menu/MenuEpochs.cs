@@ -179,6 +179,7 @@ public class MenuEpochs : Oprimization
             {
                 Epochs(true, 0, true, true, "2022");
                 Opt(game);
+                monuments[43].SetActive(false);
             }
             if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 0, 100, 40), "2002"))
             {
@@ -250,12 +251,12 @@ public class MenuEpochs : Oprimization
                 Menu = false;
                 look.sensitivity = 2f;
             }
-            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 200, 100, 40), "Настройки")) // При нажатии на кнопку Настройки
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 150, 100, 40), "Настройки")) // При нажатии на кнопку Настройки
             {
                 Menu = false; // Выключается меню
                 MenuSettings = true; // Включается окно настроек
             }
-            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 150, 100, 40), "Выйти"))
+            if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 400) / 2 + 200, 100, 40), "Выйти"))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
                 for (int i = 0; i < DontDestroy.Length; i++)

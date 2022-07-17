@@ -9,11 +9,21 @@ TagManager:
   - Hand
   - Sword
   - Car
+  - Monument
+  - ArenaNew
+  - ArenaOld
+  - IgnoreWalls
+  - TV
+  - Church
+  - HallOfFlame
+  - HeroesSquare
+  - StandToTheDeath
+  - T34
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Walls
   - Water
   - UI
   - 

@@ -19,6 +19,9 @@ TagManager:
   - HeroesSquare
   - StandToTheDeath
   - T34
+  - Fire
+  - Attraction
+  - Point
   layers:
   - Default
   - TransparentFX

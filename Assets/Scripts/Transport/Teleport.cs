@@ -5,78 +5,41 @@ using UnityEngine.UI;
 
 public class Teleport : MonoBehaviour
 {
-    public GameObject[] objs;
-    public float time = 0f;
-    public GameObject image;
-    public GameObject[] colliders;
-    public float distance;
-    float player_distance;
+    [SerializeField]
+    private GameObject image;
+    private GameObject pointGame;
+    private const string point = "Point";
+    private RaycastHit hit;
+    private Camera cameraMain;
 
-    RaycastHit hit;
     private void Start()
     {
-       
-        
+        cameraMain = Camera.main;
     }
     private void Update()
     {
-        TeleportPlayer(objs);
-        
-    }
-
-    //void ActivePoint(GameObject[] gm)
-    //{
-    //    for (int i = 0; i < gm.Length; i++)
-    //        gm[i].SetActive(true);
-    //}
-    void TeleportPlayer(GameObject[] gm, RaycastHit hit, int i, float distance)
-    {
-
-
-        if (Input.GetKeyDown(KeyCode.E))
+        Ray ray = cameraMain.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out hit);
+        if (hit.collider == null)
         {
-            transform.position = gm[i].transform.position;
-            gm[i].active = false;
-            colliders[i].SetActive(true);
+            return;
+        }
+        if (!hit.collider.CompareTag(point))
+        {
             image.SetActive(false);
         }
-
-
-
+        else TeleportPlayer();
     }
 
-    void TeleportPlayer(GameObject[] gm)
+    private void TeleportPlayer()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hit);
-        /* time += Time.deltaTime;
-         Debug.Log($"Time:{time}");*/
-        if (hit.collider != null)
+        image.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            for (int i = 0; i < objs.Length; i++)
-            {
-
-                player_distance = Vector3.Distance(gm[i].transform.position, transform.position);
-                if (hit.collider.gameObject == gm[i].gameObject)
-                {
-
-                    image.SetActive(true);
-                    TeleportPlayer(objs, hit, i, player_distance);
-
-                    /*if (time> 1f)
-                    {
-                        ActivePoint(gm);
-                        time = 0f;
-                    }*/
-
-                    break;
-                }
-                else { image.SetActive(false); }
-
-            }
-
+            pointGame = hit.collider.gameObject;
+            transform.position = pointGame.transform.position;
+            image.SetActive(false);
         }
-        else { image.SetActive(false); /*time = 0;*/ }
     }
 
 }

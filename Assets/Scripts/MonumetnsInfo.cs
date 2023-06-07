@@ -4,59 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 public class MonumetnsInfo : MonoBehaviour
 {
-    public GameObject[] monuments;
-    RaycastHit hitMonument;
-    public LayerMask Layer;
+    private RaycastHit hitMonument;
+    private Camera cameraMain;
+    private const string attraction = "Attraction";
+    private InformationAboutTheMonuments info;
 
-    void FixedUpdate()
+    private void Start()
     {
-        for(int i = 0; i < monuments.Length; i++)
-        {
-            monuments[i].SetActive(false);
-        }         
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hitMonument, 1000000, Layer);
-        Debug.DrawRay(transform.position, ray.direction * 10000, Color.white);  
-        if(hitMonument.collider != null)
-        {
-            if (hitMonument.collider.gameObject.tag == "Monument")
-            {
-                monuments[0].SetActive(true);
-            }
-            if (hitMonument.collider.gameObject.tag == "ArenaNew")
-            {
-                monuments[1].SetActive(true);
-            }
-            if (hitMonument.collider.gameObject.tag == "ArenaOld")
-            {
-                monuments[2].SetActive(true);
-            }
-            if (hitMonument.collider.gameObject.tag == "TV")
-            {
-                monuments[3].SetActive(true);
-            }
-            if (hitMonument.collider.gameObject.tag == "Church")
-            {
-                monuments[4].SetActive(true);
-            }
-            if (hitMonument.collider.gameObject.tag == "HallOfFlame")
-            {
-                monuments[5].SetActive(true);
-            }
-            if (hitMonument.collider.gameObject.tag == "HeroesSquare")
-            {
-                monuments[6].SetActive(true);
-            }
-            if (hitMonument.collider.gameObject.tag == "StandToTheDeath")
-            {
-                monuments[7].SetActive(true);
-            }
-            if (hitMonument.collider.gameObject.tag == "T34")
-            {
-                monuments[8].SetActive(true);
-            }
-        }
+        cameraMain = Camera.main;
     }
+    void Update()
+    {
+        Ray ray = cameraMain.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out hitMonument);
+       
+        if (hitMonument.collider.CompareTag(attraction))
+        {
+           
+            info = hitMonument.collider.GetComponent<InformationAboutTheMonuments>();
+            info.informations.SetActive(true);
+        }
+        else info.informations.SetActive(false);
+    }
+}
 
     //private void OnGUI()
     //{
@@ -74,4 +44,4 @@ public class MonumetnsInfo : MonoBehaviour
     //    }
     //}
 
-}
+
